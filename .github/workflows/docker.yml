@@ -1,0 +1,20 @@
+name: Docker Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    environment: muthusamy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/docker-build-push
+        with:
+          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
